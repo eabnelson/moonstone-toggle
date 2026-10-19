@@ -1,4 +1,4 @@
-# Moonstone
+# Moonstone Toggle
 
 A tiny macOS menu bar switch for your [Moonstone lamp](https://moonstonelamp.com/).
 
@@ -17,9 +17,11 @@ The lamp’s physical switch should stay on. Your hub’s upstream USB/data cabl
 
 ## Install from source
 
-Clone this repository, open its folder in Terminal, and run:
+Open Terminal and run:
 
 ```sh
+git clone https://github.com/eabnelson/moonstone-toggle.git
+cd moonstone-toggle
 brew install uhubctl
 ./scripts/install.sh
 ```
