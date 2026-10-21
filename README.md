@@ -4,6 +4,8 @@ A tiny macOS menu bar switch for your [Moonstone lamp](https://moonstonelamp.com
 
 Click the stacked-stone icon, flip the switch, and the lamp turns on or off. A one-time setup connects the app to your own USB hub and lamp port. The daily interface stays a single switch.
 
+<img src="docs/images/moonstone-icons.png" alt="Moonstone icons: filled when on, outlined when off" width="280">
+
 This is an independent companion app. It controls USB power; it does not use a native lamp protocol or add dimming.
 
 ## Requirements
