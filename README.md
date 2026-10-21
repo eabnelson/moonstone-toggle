@@ -2,7 +2,7 @@
 
 A tiny macOS menu bar switch for your [Moonstone lamp](https://moonstonelamp.com/).
 
-Click the moon icon, flip the switch, and the lamp turns on or off. A one-time setup connects the app to your own USB hub and lamp port. The daily interface stays a single switch.
+Click the stacked-stone icon, flip the switch, and the lamp turns on or off. A one-time setup connects the app to your own USB hub and lamp port. The daily interface stays a single switch.
 
 This is an independent companion app. It controls USB power; it does not use a native lamp protocol or add dimming.
 
@@ -37,13 +37,17 @@ On macOS 26+, uhubctl requires libusb 1.0.30 or later. Homebrew installs libusb 
 3. Click **Test Lamp** and watch the lamp. Only that port changes power, then returns to its original state.
 4. If the lamp blinked, check the confirmation box and click **Use This Port**. Otherwise, try a different port.
 
-After setup, click the moon icon to use the switch. Right-click or Option-click the icon for **Set Up Lamp** and **Quit Moonstone**.
+After setup, click the stacked-stone icon to use the switch. The icon is filled when the lamp is on and outlined when off. Both states have a fixed size so the dropdown stays in place. Right-click or Option-click the icon for **Set Up Lamp**, **Reconnect Now**, **Launch at Login**, and **Quit Moonstone**. Enable **Launch at Login** to keep the control available after restarting your Mac. Opening Moonstone again restores its menu bar icon and opens the switch.
+
+If Moonstone is running but its icon is missing, check **System Settings → Menu Bar → Allow in the Menu Bar** and enable **Moonstone**. macOS can block an app’s menu bar item independently of the app’s own visibility setting.
 
 ## Compatibility and reconnecting
 
 Some hubs advertise power control without actually cutting voltage. Setup cannot detect light visually: confirm that the lamp really blinked. Moonstone acts only on the exact selected hub and port; it does not force unsupported hardware or automatically switch USB 3 companion hubs. A hub requiring companion switching may not work.
 
-If you move the hub to a different Mac socket, replace the hub, or move the lamp to a different hub port, run setup again. Moonstone checks the saved hub location, identity, description, and port before switching. If a USB data device is later plugged into the selected port, control is disabled.
+Moonstone remembers the lamp’s hub and port across launches. If the hub disconnects, it checks every three seconds until the saved hub returns, and checks immediately when the Mac wakes. Moving the same hub to a different Mac socket is supported: when exactly one hub matches its saved identifier and full description, Moonstone follows its new location and saves it automatically. Reconnecting reads the power state without changing it.
+
+If multiple hubs have identical identifiers and descriptions, automatic control waits until the extra hub is disconnected. Replace the hub or move the lamp to a different port on the hub, and you must run setup again. A power-only lamp does not identify itself over USB, so Moonstone cannot detect which new hub port it has moved to. If a USB data device is later plugged into the saved port, control is disabled.
 
 Connection settings stay on your Mac in `~/Library/Application Support/Moonstone/connection.json`. They contain the selected hub’s description, which can include hardware serial numbers. This file is not part of the repository and should not be included in bug reports.
 
@@ -56,6 +60,8 @@ open build/Moonstone.app
 ```
 
 `MoonstoneCore` handles hub parsing, connection settings, subprocess timeouts, and port control. `Moonstone` contains the AppKit switch and setup window. Tests use fake USB output and never switch your hardware. CI runs tests and builds the app on macOS.
+
+The installed executable supports `--status` (JSON; also remembers a relocated hub), `--enable-login`, `--disable-login`, and `--login-status` for local automation.
 
 The build is locally ad hoc signed. Public prebuilt releases would need a separate signing and notarization process. `uhubctl` stays a separately installed runtime dependency; this repository and the generated app do not bundle third-party executables or libraries.
 
