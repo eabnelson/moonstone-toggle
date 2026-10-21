@@ -63,6 +63,8 @@ open build/Moonstone.app
 
 `MoonstoneCore` handles hub parsing, connection settings, subprocess timeouts, and port control. `Moonstone` contains the AppKit switch and setup window. Tests use fake USB output and never switch your hardware. CI runs tests and builds the app on macOS.
 
+The app icon uses the same filled stone artwork as the menu bar. Run `./scripts/make-icon.sh` after editing `Sources/Moonstone/MoonstoneIcon.swift` to regenerate all app icon sizes.
+
 The installed executable supports `--status` (JSON; also remembers a relocated hub), `--enable-login`, `--disable-login`, and `--login-status` for local automation.
 
 The build is locally ad hoc signed. Public prebuilt releases would need a separate signing and notarization process. `uhubctl` stays a separately installed runtime dependency; this repository and the generated app do not bundle third-party executables or libraries.

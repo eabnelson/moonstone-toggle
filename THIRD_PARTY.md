@@ -11,6 +11,6 @@ Local verification used uhubctl 2.6.0 and libusb 1.0.30. These projects retain t
 
 Moonstone has no Swift package dependencies. AppKit and Foundation are provided by macOS.
 
-## Menu bar artwork
+## App and menu bar artwork
 
-The menu bar mark uses the two-stone vector geometry from the lamp maker’s [website favicon](https://moonstonelamp.com/images/favicon.svg), with filled and outline variants. The mark belongs to its original owner and is not covered by this repository’s MIT license. This is an independent companion app; the mark does not imply endorsement. Obtain permission before redistributing the maker’s artwork.
+The app icon and menu bar mark use the two-stone vector geometry from the lamp maker’s [website favicon](https://moonstonelamp.com/images/favicon.svg), with filled and outline menu bar variants. The mark belongs to its original owner and is not covered by this repository’s MIT license. This is an independent companion app; the mark does not imply endorsement. Obtain permission before redistributing the maker’s artwork.
